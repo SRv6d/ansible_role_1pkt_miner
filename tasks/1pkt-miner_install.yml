@@ -1,0 +1,31 @@
+---
+- name: clone 1pkt miner repo
+  ansible.builtin.git:
+    repo: "{{ pkt_miner_git_repository_url }}"
+    dest: "{{ _pkt_miner_latest_installation_directory }}"
+    version: "{{ pkt_miner_git_repository_version }}"
+  notify:
+    - build 1pkt miner
+    - 1pkt-miner service restart
+
+- name: symlink 1pkt miner
+  ansible.builtin.file:
+    src: "{{ _pkt_miner_latest_installation_directory }}"
+    dest: "{{ _pkt_miner_active_installation_directory }}"
+    owner: root
+    group: root
+    state: link
+  notify:
+    - 1pkt-miner service restart
+
+- name: push 1pkt miner systemd service file
+  ansible.builtin.template:
+    src: "etc/systemd/system/1pkt-miner.service.j2"
+    dest: /etc/systemd/system/1pkt-miner.service
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - systemd daemon-reload
+    - 1pkt-miner service enable
+    - 1pkt-miner service restart

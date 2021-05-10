@@ -1,0 +1,61 @@
+---
+- name: build 1pkt miner
+  ansible.builtin.shell:
+    cmd: ~/.cargo/bin/cargo build --release
+    chdir: "{{ _pkt_miner_latest_installation_directory }}"
+  environment:
+    RUSTFLAGS: -C target-cpu=native
+
+- name: systemd daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: 1pkt-miner service enable
+  ansible.builtin.systemd:
+    name: 1pkt-miner
+    enabled: true
+
+- name: 1pkt-miner service start
+  ansible.builtin.systemd:
+    name: 1pkt-miner
+    state: started
+
+- name: 1pkt-miner service stop
+  ansible.builtin.systemd:
+    name: 1pkt-miner
+    state: stopped
+
+- name: 1pkt-miner service restart
+  ansible.builtin.systemd:
+    name: 1pkt-miner
+    state: restarted
+
+- name: 1pkt-miner service reload
+  ansible.builtin.systemd:
+    name: 1pkt-miner
+    state: reloaded
+
+- name: cpufrequtils service enable
+  ansible.builtin.systemd:
+    name: cpufrequtils
+    enabled: true
+
+- name: cpufrequtils service start
+  ansible.builtin.systemd:
+    name: cpufrequtils
+    state: started
+
+- name: cpufrequtils service stop
+  ansible.builtin.systemd:
+    name: cpufrequtils
+    state: stopped
+
+- name: cpufrequtils service restart
+  ansible.builtin.systemd:
+    name: cpufrequtils
+    state: restarted
+
+- name: cpufrequtils service reload
+  ansible.builtin.systemd:
+    name: cpufrequtils
+    state: reloaded

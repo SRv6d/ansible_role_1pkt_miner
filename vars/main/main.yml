@@ -1,0 +1,11 @@
+---
+_pkt_miner_dependencies:
+  - gcc
+  - gcc-multilib
+  - git
+  - curl
+  - make
+  - cpufrequtils
+_pkt_miner_active_installation_directory: /opt/1pkt-miner
+_pkt_miner_latest_installation_directory: "/opt/1pkt-miner-{{ pkt_miner_git_repository_url | regex_replace('/', '') | hash('md5') }}-{{ pkt_miner_git_repository_version }}"
+_pkt_rustup_script_url: https://sh.rustup.rs

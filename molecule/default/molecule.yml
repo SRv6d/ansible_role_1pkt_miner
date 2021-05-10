@@ -1,0 +1,41 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+    requirements-file: requirements.yml
+driver:
+  name: docker
+platforms:
+  - name: ubuntu-20.04
+    image: srv6d/ubuntu-systemd:20.04
+    tmpfs:
+      - /run
+      - /tmp:exec
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    privileged: true
+    command: "/sbin/init"
+    pre_build_image: true
+  - name: debian-10
+    image: srv6d/debian-systemd:10
+    tmpfs:
+      - /run
+      - /tmp:exec
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    privileged: true
+    command: "/sbin/init"
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .

@@ -1,0 +1,19 @@
+---
+- name: set cpufrequtils defaults
+  ansible.builtin.lineinfile:
+    dest: /etc/default/cpufrequtils
+    regexp: "^#?{{ item.option }}.+$"
+    line: "{{ item.option }} = '{{ item.value }}'"
+    state: present
+    create: true
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - option: ENABLE
+      value: true
+    - option: GOVERNOR
+      value: performance
+  loop_control:
+    label: "{{ item.option }}"
+  notify: cpufrequtils service restart

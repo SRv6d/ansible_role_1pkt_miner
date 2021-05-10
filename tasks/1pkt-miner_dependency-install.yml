@@ -1,0 +1,6 @@
+---
+- name: install 1pkt miner dependencies
+  ansible.builtin.apt:
+    name: "{{ _pkt_miner_dependencies }}"
+    update_cache: true
+    state: present

@@ -1,0 +1,12 @@
+---
+- name: import 1pkt miner dependency installation task
+  include_tasks: 1pkt-miner_dependency-install.yml
+
+- name: import rust installation task
+  include_tasks: rust-install.yml
+
+- name: import CPU tuning task
+  include_tasks: cpu-tuning.yml
+
+- name: import 1pkt miner installation task
+  include_tasks: 1pkt-miner_install.yml

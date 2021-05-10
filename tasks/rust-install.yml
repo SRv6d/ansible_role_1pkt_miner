@@ -1,0 +1,5 @@
+---
+- name: install rust
+  ansible.builtin.shell:
+    cmd: "curl --proto '=https' --tlsv1.2 -sSf {{ _pkt_rustup_script_url }} | sh -s -- -y"
+    creates: /root/.cargo/bin/cargo

@@ -1,0 +1,14 @@
+[Unit]
+Description=1PKT Mining Daemon
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart={{ _pkt_miner_active_installation_directory }}/target/release/packetcrypt ann {{ pkt_miner_pools | join(' ') }}
+Restart=always
+RestartSec=30
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target

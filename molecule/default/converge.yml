@@ -1,0 +1,31 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: install basic dependencies in debian based conatainers
+      ansible.builtin.apt:
+        name:
+          - sudo
+          - iproute2
+          - procps
+          - locales
+        state: present
+      when: ansible_os_family == "Debian"
+    - name: install basic dependencies in rhel based conatainers
+      ansible.builtin.yum:
+        name:
+          - sudo
+          - iproute
+        state: present
+      when: ansible_os_family == "RedHat"
+    - name: gather facts after installing dependencies
+      ansible.builtin.setup:
+        gather_subset:
+          - network
+    - name: "Include ansible_role_1pkt_miner"
+      include_role:
+        name: "ansible_role_1pkt_miner"
+  vars:
+    is_test_run: true
+    pkt_miner_pools:
+      - http://pool.srizbi.com
