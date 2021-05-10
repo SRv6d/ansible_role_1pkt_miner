@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart={{ _pkt_miner_active_installation_directory }}/target/release/packetcrypt ann {{ pkt_miner_pools | join(' ') }}
+ExecStart={{ _pkt_miner_active_installation_directory }}/target/release/packetcrypt ann -p {{ pkt_miner_wallet_address }} {{ pkt_miner_pools | join(' ') }}
 Restart=always
 RestartSec=30
 TimeoutStopSec=300
