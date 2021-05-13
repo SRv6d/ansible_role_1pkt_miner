@@ -27,5 +27,6 @@
         name: "ansible_role_1pkt_miner"
   vars:
     is_test_run: true
+    pkt_miner_wallet_address: pkt1qp07ltklye0vllkgpam35s3fqfh407cxs2gjvxm
     pkt_miner_pools:
       - http://pool.srizbi.com
