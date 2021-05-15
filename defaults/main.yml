@@ -1,3 +1,4 @@
 ---
 pkt_miner_git_repository_url: https://github.com/cjdelisle/packetcrypt_rs
 pkt_miner_git_repository_version: HEAD
+pkt_miner_service_name: 1pkt-miner

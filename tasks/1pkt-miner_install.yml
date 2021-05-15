@@ -21,7 +21,7 @@
 - name: push 1pkt miner systemd service file
   ansible.builtin.template:
     src: "etc/systemd/system/1pkt-miner.service.j2"
-    dest: /etc/systemd/system/1pkt-miner.service
+    dest: "/etc/systemd/system/{{ pkt_miner_service_name }}.service"
     owner: root
     group: root
     mode: 0755
