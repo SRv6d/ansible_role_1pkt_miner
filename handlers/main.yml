@@ -10,31 +10,6 @@
   ansible.builtin.systemd:
     daemon_reload: true
 
-- name: 1pkt-miner service enable
-  ansible.builtin.systemd:
-    name: "{{ pkt_miner_service_name }}"
-    enabled: true
-
-- name: 1pkt-miner service start
-  ansible.builtin.systemd:
-    name: "{{ pkt_miner_service_name }}"
-    state: started
-
-- name: 1pkt-miner service stop
-  ansible.builtin.systemd:
-    name: "{{ pkt_miner_service_name }}"
-    state: stopped
-
-- name: 1pkt-miner service restart
-  ansible.builtin.systemd:
-    name: "{{ pkt_miner_service_name }}"
-    state: restarted
-
-- name: 1pkt-miner service reload
-  ansible.builtin.systemd:
-    name: "{{ pkt_miner_service_name }}"
-    state: reloaded
-
 - name: cpufrequtils service enable
   ansible.builtin.systemd:
     name: cpufrequtils
@@ -58,4 +33,29 @@
 - name: cpufrequtils service reload
   ansible.builtin.systemd:
     name: cpufrequtils
+    state: reloaded
+
+- name: 1pkt-miner service enable
+  ansible.builtin.systemd:
+    name: "{{ pkt_miner_service_name }}"
+    enabled: true
+
+- name: 1pkt-miner service start
+  ansible.builtin.systemd:
+    name: "{{ pkt_miner_service_name }}"
+    state: started
+
+- name: 1pkt-miner service stop
+  ansible.builtin.systemd:
+    name: "{{ pkt_miner_service_name }}"
+    state: stopped
+
+- name: 1pkt-miner service restart
+  ansible.builtin.systemd:
+    name: "{{ pkt_miner_service_name }}"
+    state: restarted
+
+- name: 1pkt-miner service reload
+  ansible.builtin.systemd:
+    name: "{{ pkt_miner_service_name }}"
     state: reloaded
