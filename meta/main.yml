@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: 1pkt_miner
+  role_name: pkt_miner
   author: Marvin Vogt
   namespace: srv6d
   description: installs and configures the 1PKT mining software
