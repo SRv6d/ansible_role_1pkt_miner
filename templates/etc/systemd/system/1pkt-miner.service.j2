@@ -9,6 +9,9 @@ ExecStart={{ _pkt_miner_active_installation_directory }}/target/release/packetcr
 Restart=always
 RestartSec=30
 TimeoutStopSec=300
+{% for __variable in pkt_miner_service_environment_variables | default(omit) if pkt_miner_service_environment_variables is defined %}
+Environment="{{ __variable }}"
+{% endfor %}
 
 [Install]
 WantedBy=multi-user.target
